@@ -1,0 +1,41 @@
+<header class="bg-transparent p-4 flex justify-between items-center w-full">
+  <div class="flex space-x-4 text-sm md:text-base">
+
+    <a href="#proyectos" class="hover:text-teal-800 transition-colors duration-300">Proyectos</a>
+    <a href="#contacto" class="hover:text-teal-800 transition-colors duration-300">Contacto</a>
+    <a href="#sobremi" class="hover:text-teal-800 transition-colors duration-300">Sobre mí</a>
+  </div>
+
+  <button id="theme-toggle" class="text-lg md:text-xl bg-none border-none cursor-pointer">
+    🌙
+  </button>
+</header>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("theme-toggle");
+
+    const storedTheme = localStorage.getItem('theme');
+
+    if (storedTheme === 'dark') {
+      document.body.classList.add("dark");
+      button.textContent = "☀️"; 
+    } else {
+      document.body.classList.remove("dark");
+      button.textContent = "🌙"; 
+    }
+
+    button.addEventListener("click", function () {
+      const body = document.body;
+      const isDarkMode = body.classList.contains("dark");
+
+      body.classList.toggle("dark");
+
+      button.textContent = isDarkMode ? "🌙" : "☀️";
+
+      localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
+    });
+  });
+</script>

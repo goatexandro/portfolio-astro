@@ -1,0 +1,30 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+const projects = await Astro.glob("../components/mds/*.md");
+---
+
+<section id="proyectos" class="mt-24 px-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    {projects.slice(0, 2).map((project) => (
+      <ProjectCard 
+        image={project.frontmatter.image} 
+        title={project.frontmatter.title} 
+        description={project.frontmatter.description} 
+        codeLink={project.frontmatter.codeLink} 
+        pageLink={project.frontmatter.pageLink} 
+      />
+    ))}
+
+    <div id="extra-projects" class="hidden sm:grid lg:grid-cols-2 lg:gap-6 lg:col-span-2 w-full">
+      {projects.slice(2).map((project) => (
+        <ProjectCard 
+          image={project.frontmatter.image} 
+          title={project.frontmatter.title} 
+          description={project.frontmatter.description} 
+          codeLink={project.frontmatter.codeLink} 
+          pageLink={project.frontmatter.pageLink} 
+        />
+      ))}
+    </div>
+  </div>
+</section>
